@@ -1,6 +1,7 @@
+using Hillerød_Sejklub.Pages;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Hillerød_Sejklub.Pages
+namespace Hillerød_Sejklub.Models
 {
     public class BoatsModel : PageModel
     {
@@ -14,7 +15,7 @@ namespace Hillerød_Sejklub.Pages
 
             // Add boats one by one
             BoatsList.Add(new Boats(1, "Marie", "Sailboat", "12345", "Yamaha 4HP", 2010, true));
-            BoatsList.Add(new Boats(2, "Lille Havfrue", "Motorboat", "67890", "Honda 10HP", 2015, false));
+            BoatsList.Add(new Boats(2, "Clara", "Motorboat", "67890", "Honda 10HP", 2015, false));
         }
     }
 }
