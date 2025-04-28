@@ -1,24 +1,30 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using Hillerød_Sejklub.Pages;
 using Hillerød_Sejklub.Models;
 
 namespace Hillerød_Sejklub.Pages
 {
     public class BoatsModel : PageModel
     {
-        // Public list of Boats
-        public List<Boats> BoatsList { get; set; }
+        // Separate lists for our boats
+        public List<Sailboat> Sailboats { get; set; }
+        public List<Motorboat> Motorboats { get; set; }
 
         public void OnGet()
         {
-            // Initialize the list
-            BoatsList = new List<Boats>();
+            Sailboats = new List<Sailboat>
+            {
+                new Sailboat(1, "Marie", "Sailboat", "12345", "Yamaha 4HP", 2010, true, 2),
+                new Sailboat(2, "Clara", "Sailboat", "67890", "Honda 10HP", 2015, false, 3)
+            };
 
-            // Add boats one by one
-            BoatsList.Add(new Sailboat(1, "Marie", "Sailboat", "12345", "Yamaha 4HP", 2010, true, 2)); // 2 sails 
-            BoatsList.Add(new Motorboat(2, "Clara", "Motorboat", "67890", "Honda 10HP", 2015, false,"Outboard Engine")); // outboard engine
-            BoatsList.Add(new Sailboat(3, "Lene", "speedster", "12345", "Yamaha 4HP", 2010, true, 3)); // 3 sails
-            BoatsList.Add(new Motorboat(4, "Johan", "breeze", "12345", "Yamaha 4HP", 2010, true, "Inboard Engine")); // inboard engine
+            Motorboats = new List<Motorboat>
+            {
+                new Motorboat(3, "Luna", "Motorboat", "54321", "Suzuki 15HP", 2018, true, "4-stroke"),
+                new Motorboat(4, "Bella", "Motorboat", "09876", "Yamaha 20HP", 2020, false, "2-stroke")
+            };
         }
     }
 }
+

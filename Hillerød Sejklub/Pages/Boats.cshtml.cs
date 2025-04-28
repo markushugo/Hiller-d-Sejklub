@@ -13,7 +13,7 @@ namespace Hillerød_Sejklub.Models
         private string _engineInfo;
         private int _buildYear;
         private bool _isAvailable;
-        private int buildYear;
+        
 
         // our constructor
         public Boats(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable)
