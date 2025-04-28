@@ -1,7 +1,8 @@
-using Hillerød_Sejklub.Pages;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using Hillerød_Sejklub.Models;
 
-namespace Hillerød_Sejklub.Models
+namespace Hillerød_Sejklub.Pages
 {
     public class BoatsModel : PageModel
     {

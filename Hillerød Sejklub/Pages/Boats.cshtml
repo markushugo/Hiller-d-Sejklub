@@ -1,0 +1,64 @@
+﻿@page
+@using Hillerød_Sejklub.Models
+@model Hillerød_Sejklub.Pages.BoatsModel
+@{
+    ViewData["Title"] = "Både";
+}
+
+<style>
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+    }
+
+    th {
+        background-color: #007BFF;
+        text-align: center;
+        padding: 12px;
+        font-size: 18px;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    h1, p {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<h1>List of Boats</h1>
+<p>Here you can find a list of all the boats available in Hillerød Sejklub.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Boat Name</th>
+            <th>Model</th>
+            <th>Sail Number</th>
+            <th>Engine info</th>
+            <th>Build year</th>
+            <th>Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boats boat in Model.BoatsList)
+        {
+            <tr>
+                <td>@boat.Name</td>
+                <td>@boat.Model</td>
+                <td>@boat.SailNumber</td>
+                <td>@boat.EngineInfo</td>
+                <td>@boat.BuildYear</td>
+                <td>@(boat.IsAvailable ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>
