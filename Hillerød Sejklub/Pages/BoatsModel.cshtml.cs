@@ -15,8 +15,10 @@ namespace Hillerød_Sejklub.Pages
             BoatsList = new List<Boats>();
 
             // Add boats one by one
-            BoatsList.Add(new Boats(1, "Marie", "Sailboat", "12345", "Yamaha 4HP", 2010, true));
-            BoatsList.Add(new Boats(2, "Clara", "Motorboat", "67890", "Honda 10HP", 2015, false));
+            BoatsList.Add(new Sailboat(1, "Marie", "Sailboat", "12345", "Yamaha 4HP", 2010, true, 2)); // 2 sails 
+            BoatsList.Add(new Motorboat(2, "Clara", "Motorboat", "67890", "Honda 10HP", 2015, false,"Outboard Engine")); // outboard engine
+            BoatsList.Add(new Sailboat(3, "Lene", "speedster", "12345", "Yamaha 4HP", 2010, true, 3)); // 3 sails
+            BoatsList.Add(new Motorboat(4, "Johan", "breeze", "12345", "Yamaha 4HP", 2010, true, "Inboard Engine")); // inboard engine
         }
     }
 }
