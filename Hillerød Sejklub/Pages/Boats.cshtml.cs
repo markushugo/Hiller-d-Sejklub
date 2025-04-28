@@ -6,14 +6,15 @@ namespace Hillerød_Sejklub.Pages
     {
         public class Boat
         {
-            public int BoatId { get; set; }
-            public string Name { get; set; }
-            public string Model { get; set; }
-            public string SailNumber { get; set; }
-            public string EngineInfo { get; set; }
-            public int BuildYear { get; set; }
-            public bool IsAvailable { get; set; }
-            public Boat(int BoatID, string name, string model, string sailNumber, string engineInfo, int builderYear, bool isAvailable)
+            private int BoatId { get; set; }
+            private string Name { get; set; }
+            private string Model { get; set; }
+            private string SailNumber { get; set; }
+            private string EngineInfo { get; set; }
+            private int BuildYear { get; set; }
+            private bool IsAvailable { get; set; }
+
+            public Boat(int boatID, string name, string model, string sailNumber, string engineInfo, int builderYear, bool isAvailable)
             {
                 Name = name;
                 Model = model;
