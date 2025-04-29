@@ -10,6 +10,7 @@ namespace Hillerød_Sejklub.Pages
         // Separate lists for our boats
         public List<Sailboat> Sailboats { get; set; }
         public List<Motorboat> Motorboats { get; set; }
+        public List<Boats> BoatsList { get; set; }
 
         public void OnGet()
         {
@@ -23,6 +24,11 @@ namespace Hillerød_Sejklub.Pages
             {
                 new Motorboat(3, "Luna", "Motorboat", "54321", "Suzuki 15HP", 2018, true, "4-stroke"),
                 new Motorboat(4, "Bella", "Motorboat", "09876", "Yamaha 20HP", 2020, false, "2-stroke")
+            };
+
+            BoatsList = new List<Boats>
+            {
+
             };
         }
     }

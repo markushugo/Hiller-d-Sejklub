@@ -14,6 +14,8 @@ namespace Hillerød_Sejklub.Models
             // Assigning the engine type to the property
             EngineType = engineType;
         }
+
+        
     }
     
     }
