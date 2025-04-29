@@ -6,7 +6,7 @@
     {
         // Public properties for a repair request  
         public int Id { get; set; }
-        public string BoatName { get; set; } // Fix type mismatch: Change type from int to string  
+        public string BoatName { get; set; } 
         public string ProblemDescription { get; set; }
         public bool IsFixed { get; set; }
 
