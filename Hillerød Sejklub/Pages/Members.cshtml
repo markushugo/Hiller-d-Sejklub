@@ -1,0 +1,33 @@
+﻿@page
+@model Hillerød_Sejklub.Pages.MembersModel
+@{
+    ViewData["Title"] = "Medlemmer";
+    <link href="~/css/members.css" rel="stylesheet" />
+}
+
+<h1>Liste af vores medlemmer</h1>
+<p>Her kan du se en liste af de medlemmer vi har i Hillerød Sejlklub.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Medlemsnummer</th>
+            <th>Email</th>
+            <th>Telefonnummer</th>
+            <th>Aktiv</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (Hillerød_Sejklub.Pages.MembersModel.Member member in Model.MembersList)
+    {
+        <tr>
+            <td>@member.Name</td>
+            <td>@member.MemberId</td>
+            <td>@member.Email</td>
+            <td>@member.Phone</td>
+            <td>@(member.IsActive ? "yes" : "No")</td>
+        </tr>
+    }
+    </tbody>
+</table>

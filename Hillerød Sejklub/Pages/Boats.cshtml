@@ -1,0 +1,67 @@
+﻿@page
+@using Hillerød_Sejklub.Models
+@model Hillerød_Sejklub.Pages.BoatsModel
+@{
+    ViewData["Title"] = "Både";
+}
+
+<h1 class="text-center">Liste af vores både</h1>
+<p class="text-center">Her kan du se en liste af de både vi tilbyder i Hillerød Sejlklub.</p>
+
+<h2>Sejlbåde</h2>
+<div class="row">
+    @foreach (Sailboat sailboat in Model.Sailboats)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@sailboat.Name</h5>
+                    <p class="card-text">Model: @sailboat.Model</p>
+                    <p class="card-text">Årgang: @sailboat.BuildYear</p>
+                    <p class="card-text">Antal sejl: @sailboat.NumberOfSails</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<h2>Motorbåde</h2>
+<div class="row">
+    @foreach (Motorboat motorboat in Model.Motorboats)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@motorboat.Name</h5>
+                    <p class="card-text">Model: @motorboat.Model</p>
+                    <p class="card-text">Årgang: @motorboat.BuildYear</p>
+                    <p class="card-text">Motortype: @motorboat.EngineType</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<table>
+     <thead>
+        <tr>
+            <th>Model</th>
+            <th>Sail Nummer</th>
+            <th>Engine info</th>
+            <th>Build year</th>
+            <th>Tilgængelig</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boats boat in Model.BoatsList)
+        {
+            <tr>
+                <td>@boat.Name</td>
+                <td>@boat.Model</td>
+                <td>@boat.SailNumber</td>
+                <td>@boat.EngineInfo</td>
+                <td>@boat.BuildYear</td>
+                <td>@(boat.IsAvailable ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>
