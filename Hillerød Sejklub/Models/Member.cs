@@ -1,6 +1,4 @@
-﻿using Hillerød_Sejklub.Pages;
-
-namespace Hillerød_Sejklub.Models
+﻿namespace Hillerød_Sejklub.Models
 {
     public class Member : Boats
     {
@@ -26,7 +24,7 @@ namespace Hillerød_Sejklub.Models
         // our constructor
 
 
-        public Member(string name, string email, string phoneNumber, string address, string city)
+        public Member(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, string email, string phoneNumber, string address, string city) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable)
         {
             _name = name;
             _email = email;
