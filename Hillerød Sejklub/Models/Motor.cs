@@ -1,6 +1,6 @@
 ﻿namespace Hillerød_Sejklub.Models
 {
-    public class Motor : Motor
+    public class Motor
     {
         public int _antelHorse;
 
