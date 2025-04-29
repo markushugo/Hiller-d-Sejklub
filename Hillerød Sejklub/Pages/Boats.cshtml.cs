@@ -13,10 +13,22 @@ namespace Hillerød_Sejklub.Models
         private string _engineInfo;
         private int _buildYear;
         private bool _isAvailable;
-        
+        private string _imagePath;
+
+        public Boats(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable)
+        {
+            BoatId = boatID;
+            Name = name;
+            Model = model;
+            SailNumber = sailNumber;
+            EngineInfo = engineInfo;
+            BuildYear = buildYear;
+            IsAvailable = isAvailable;
+        }
+
 
         // our constructor
-        public Boats(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable)
+        public Boats(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, string imagePath)
         {
             _boatId = boatID;
             _name = name;
@@ -25,6 +37,7 @@ namespace Hillerød_Sejklub.Models
             _engineInfo = engineInfo;
             _buildYear = buildYear;
             _isAvailable = isAvailable;
+            _imagePath = imagePath;
 
 
         }
@@ -63,6 +76,11 @@ namespace Hillerød_Sejklub.Models
         {
             get { return _isAvailable; }
             set { _isAvailable = value; }
+        }
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { _imagePath = value; }
         }
         // method to get boat info
         public virtual string GetInfo()
