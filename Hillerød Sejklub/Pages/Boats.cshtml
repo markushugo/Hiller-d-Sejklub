@@ -41,3 +41,24 @@
         </div>
     }
 </div>
+            <th>Model</th>
+            <th>Sail Nummer</th>
+            <th>Engine info</th>
+            <th>Build year</th>
+            <th>Tilgængelig</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boats boat in Model.BoatsList)
+        {
+            <tr>
+                <td>@boat.Name</td>
+                <td>@boat.Model</td>
+                <td>@boat.SailNumber</td>
+                <td>@boat.EngineInfo</td>
+                <td>@boat.BuildYear</td>
+                <td>@(boat.IsAvailable ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>

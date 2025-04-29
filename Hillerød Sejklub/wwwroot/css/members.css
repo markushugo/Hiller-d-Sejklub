@@ -1,0 +1,27 @@
+﻿table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    background-color: #007BFF;
+    text-align: start;
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+h1, p {
+    text-align: start;
+    font-family: Arial, sans-serif;
+}

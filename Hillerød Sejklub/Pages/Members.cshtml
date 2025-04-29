@@ -2,36 +2,9 @@
 @model Hillerød_Sejklub.Pages.MembersModel
 @{
     ViewData["Title"] = "Medlemmer";
+    <link href="~/css/members.css" rel="stylesheet" />
 }
-<style>
-    table {
-        width: 90%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-    }
 
-    th {
-        background-color: #007BFF;
-        text-align: center;
-        padding: 12px;
-        font-size: 18px;
-        color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    h1, p {
-        text-align: center;
-        font-family: Arial, sans-serif;
-    }
-</style>
 <h1>Liste af vores medlemmer</h1>
 <p>Her kan du se en liste af de medlemmer vi har i Hillerød Sejlklub.</p>
 
@@ -42,6 +15,7 @@
             <th>Medlemsnummer</th>
             <th>Email</th>
             <th>Telefonnummer</th>
+            <th>Aktiv</th>
         </tr>
     </thead>
     <tbody>
