@@ -33,6 +33,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">@motorboat.Name</h5>
+                    <img src="Media/indexfoto1.jpg" class="card-img-top" alt="Indexfoto1">
                     <p class="card-text">Model: @motorboat.Model</p>
                     <p class="card-text">Årgang: @motorboat.BuildYear</p>
                     <p class="card-text">Motortype: @motorboat.EngineType</p>
@@ -42,15 +43,7 @@
     }
 </div>
 <table>
-     <thead>
-        <tr>
-            <th>Model</th>
-            <th>Sail Nummer</th>
-            <th>Engine info</th>
-            <th>Build year</th>
-            <th>Tilgængelig</th>
-        </tr>
-    </thead>
+
     <tbody>
         @foreach (Boats boat in Model.BoatsList)
         {
