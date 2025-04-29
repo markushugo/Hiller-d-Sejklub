@@ -57,4 +57,83 @@
             </tr>
         }
     </tbody>
-   
+    <!DOCTYPE html>
+    <html lang="da">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Båd Booking</title>
+    </head>
+    <body>
+        <h1>Book en Båd</h1>
+        <form id="bookingForm">
+            <label for="bådID">Båd ID:</label>
+            <input type="number" id="bådID" name="bådID" required /><br /><br />
+
+            <label for="medlemsID">Medlems ID:</label>
+            <input type="number" id="medlemsID" name="medlemsID" required /><br /><br />
+
+            <label for="sejlTid">Sejltid:</label>
+            <input type="datetime-local" id="sejlTid" name="sejlTid" required /><br /><br />
+
+            <label for="mødested">Mødested:</label>
+            <input type="text" id="mødested" name="mødested" required /><br /><br />
+
+            <button type="button" onclick="bookBåd()">Book båd</button>
+        </form>
+
+        <h2>Booking Log</h2>
+        <ul id="bookingLog"></ul>
+
+        <script>
+            // Simulerer en liste over bookinger
+            let bookings = [];
+
+            function generateBookingID() {
+            // simpel tæl-lejellem
+            if (!generateBookingID.counter) generateBookingID.counter = 1;
+            return generateBookingID.counter++;
+            }
+
+            function bookBåd() {
+            const bådID = parseInt(document.getElementById('bådID').value);
+            const medlemsID = parseInt(document.getElementById('medlemsID').value);
+            const sejlTidStr = document.getElementById('sejlTid').value;
+            const mødested = document.getElementById('mødested').value;
+
+            const sejlTid = new Date(sejlTidStr);
+
+            // Tjekker tilgængelighed
+            const erTilgængelig = bookings.every(b => b.BådID !== bådID || b.SejlTid.getTime() !== sejlTid.getTime());
+
+            if (!erTilgængelig) {
+            alert('Båden er allerede booket til dette tidspunkt.');
+            return;
+            }
+            return;
+            }
+
+            const nyBookingID = generateBookingID();
+
+            const nyBooking = {
+            BookingID: nyBookingID,
+            BådID: bådID,
+            MedlemsID: medlemsID,
+            SejlTid: sejlTid,
+            Mødested: mødested
+            };
+
+            bookings.push(nyBooking);
+            addBookingToLog(nyBooking);
+            alert('Båd er blevet booket.');
+            
+
+            function addBookingToLog(booking) {
+            const ul = document.getElementById('bookingLog');
+            const li = document.createElement('li');
+            li.textContent = BookingID: ${booking.BookingID}, BådID: ${booking.BådID}, MedlemsID: ${booking.MedlemsID}, SejlTid: ${booking.SejlTid.toLocaleString()}, Mødested: ${booking.Mødested};
+            ul.appendChild(li);
+            }
+        </script>
+    </body>
+</html>
+</table>
