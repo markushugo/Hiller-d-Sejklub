@@ -21,7 +21,7 @@ namespace Hillerød_Sejklub.Pages
             public int MemberId
             {
                 get { return _memberId; }
-                set { _memberId = value; }
+               private set { _memberId = value; }
             }
             public string Name
             {
