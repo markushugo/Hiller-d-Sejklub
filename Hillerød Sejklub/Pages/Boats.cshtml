@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Båd Booking</title>
-    <link rel="stylesheet" href="css/site.css"> <!-- Sørg for at denne sti passer -->
+    <link rel="stylesheet" href="css/site.css"> 
 </head>
 <body>
     <div class="text-center">
@@ -35,7 +35,7 @@
         </form>
     </div>
 
-    <h2>Booking Log</h2>
+    <h1 class="text-center">Booking Log</h1>
     <div id="bookingLog" class="booking-container"></div>
 
     <script>
@@ -141,21 +141,5 @@
         </div>
     }
 </div>
-@* <table>
- *@
-@*     <tbody>
-        @foreach (Boats boat in Model.BoatsList)
-        {
-            <tr>
-                <td>@boat.Name</td>
-                <td>@boat.Model</td>
-                <td>@boat.SailNumber</td>
-                <td>@boat.EngineInfo</td>
-                <td>@boat.BuildYear</td>
-                <td>@(boat.IsAvailable ? "Yes" : "No")</td>
-            </tr>
-        }
-    </tbody>
- *@  
  
-</table>
+ 
