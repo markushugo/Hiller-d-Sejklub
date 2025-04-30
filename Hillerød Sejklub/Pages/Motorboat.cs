@@ -9,7 +9,7 @@ namespace Hillerød_Sejklub.Models
         public string EngineType { get; set; } 
 
         // Constructor for Motorboat class
-        public Motorboat(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, string engineType) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable)
+        public Motorboat(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, string engineType, string imagePath) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable, imagePath)
         {
             // Assigning the engine type to the property
             EngineType = engineType;

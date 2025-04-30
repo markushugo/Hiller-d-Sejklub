@@ -8,7 +8,7 @@ namespace Hillerød_Sejklub.Models
         // Sailboat-specific properties can be added here if needed
         public int NumberOfSails { get; set; }
         // Constructor for Sailboat class
-        public Sailboat(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, int numberOfSails) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable)
+        public Sailboat(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, int numberOfSails, string imagePath) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable, imagePath)
         {
             NumberOfSails = numberOfSails;
         }

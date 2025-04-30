@@ -7,8 +7,9 @@
     public string EngineInfo { get; set; }
     public int BuildYear { get; set; }
     public bool IsAvailable { get; set; }
+    public string ImagePath { get; set; }
 
-    public Boat(int BoatID, string name, string model, string sailNumber, string engineInfo, int builderYear, bool isAvailable)
+    public Boat(int BoatID, string name, string model, string sailNumber, string engineInfo, int builderYear, bool isAvailable, string imagePath)
     {
         Name = name;
         Model = model;
@@ -16,11 +17,11 @@
         EngineInfo = engineInfo;
         BuildYear = builderYear;
         IsAvailable = isAvailable;
-
+        ImagePath = imagePath;
     }
     public override string ToString()
     {
-        return $"{Name},{Model},{SailNumber},{EngineInfo}, {IsAvailable}";
+        return $"{Name},{Model},{SailNumber},{EngineInfo}, {IsAvailable}, {ImagePath}";
     }
 
     public List<Boat> Boattype = new List<Boat>();

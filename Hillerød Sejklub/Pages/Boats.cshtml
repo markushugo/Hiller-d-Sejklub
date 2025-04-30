@@ -3,19 +3,117 @@
 @model Hillerød_Sejklub.Pages.BoatsModel
 @{
     ViewData["Title"] = "Både";
+    <link href="~/css/card.css" rel="stylesheet" />
 }
 
-<h1 class="text-center">Liste af vores både</h1>
-<p class="text-center">Her kan du se en liste af de både vi tilbyder i Hillerød Sejlklub.</p>
 
+
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Båd Booking</title>
+    <link rel="stylesheet" href="css/site.css"> <!-- Sørg for at denne sti passer -->
+</head>
+<body>
+    <div class="text-center">
+        <h1>Book en Båd</h1>
+        <form id="bookingForm">
+            <label for="bådID">Båd ID:</label>
+            <input type="number" id="bådID" name="bådID" required><br><br>
+
+            <label for="medlemsID">Medlems ID:</label>
+            <input type="number" id="medlemsID" name="medlemsID" required><br><br>
+
+            <label for="sejlTid">Sejltid:</label>
+            <input type="datetime-local" id="sejlTid" name="sejlTid" required><br><br>
+
+            <label for="mødested">Mødested:</label>
+            <input type="text" id="mødested" name="mødested" required><br><br>
+
+            <button type="button" onclick="bookBåd()">Book båd</button>
+        </form>
+    </div>
+
+    <h2>Booking Log</h2>
+    <div id="bookingLog" class="booking-container"></div>
+
+    <script>
+        let bookings = [];
+
+        function generateBookingID() {
+            if (!generateBookingID.counter) generateBookingID.counter = 1;
+            return generateBookingID.counter++;
+        }
+
+        function bookBåd() {
+            const bådID = parseInt(document.getElementById('bådID').value);
+            const medlemsID = parseInt(document.getElementById('medlemsID').value);
+            const sejlTidStr = document.getElementById('sejlTid').value;
+            const mødested = document.getElementById('mødested').value;
+
+            const sejlTid = new Date(sejlTidStr);
+
+            if (isNaN(bådID) || isNaN(medlemsID) || sejlTidStr === "" || mødested === "") {
+                alert("Udfyld venligst alle felter korrekt.");
+                return;
+            }
+
+            const erTilgængelig = bookings.every(b => b.BådID !== bådID || b.SejlTid.getTime() !== sejlTid.getTime());
+
+            if (!erTilgængelig) {
+                alert('Båden er allerede booket til dette tidspunkt.');
+                return;
+            }
+
+            const nyBooking = {
+                BookingID: generateBookingID(),
+                BådID: bådID,
+                MedlemsID: medlemsID,
+                SejlTid: sejlTid,
+                Mødested: mødested
+            };
+
+            bookings.push(nyBooking);
+            addBookingToLog(nyBooking);
+        }
+
+        function addBookingToLog(booking) {
+            const container = document.getElementById('bookingLog');
+            const card = document.createElement('div');
+            card.classList.add('booking-card');
+
+            card.innerHTML = `
+                <p><strong>BookingID:</strong> ${booking.BookingID}</p>
+                <p><strong>BådID:</strong> ${booking.BådID}</p>
+                <p><strong>MedlemsID:</strong> ${booking.MedlemsID}</p>
+                <p><strong>Sejltid:</strong> ${booking.SejlTid.toLocaleString()}</p>
+                <p><strong>Mødested:</strong> ${booking.Mødested}</p>
+            `;
+
+            container.appendChild(card);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+<h1 class="text-center">Liste af vores både</h1>
 <h2>Sejlbåde</h2>
+
+
+
 <div class="row">
     @foreach (Sailboat sailboat in Model.Sailboats)
     {
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">@sailboat.Name</h5>
+                    <h5 class="card-title text-center">@sailboat.Name</h5>
+                    <img src="@Url.Content("~/Media/" + sailboat.ImagePath)" class="card-img-top" alt="@sailboat.Name" />
                     <p class="card-text">Model: @sailboat.Model</p>
                     <p class="card-text">Årgang: @sailboat.BuildYear</p>
                     <p class="card-text">Antal sejl: @sailboat.NumberOfSails</p>
@@ -32,19 +130,20 @@
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">@motorboat.Name</h5>
-                    <img src="Media/indexfoto1.jpg" class="card-img-top" alt="Indexfoto1">
+                    <h5 class="card-title text-center">@motorboat.Name</h5>
+                    <img src="@Url.Content("~/Media/" + motorboat.ImagePath)" class="card-img-top" alt="@motorboat.Name" />
                     <p class="card-text">Model: @motorboat.Model</p>
                     <p class="card-text">Årgang: @motorboat.BuildYear</p>
                     <p class="card-text">Motortype: @motorboat.EngineType</p>
+                    <p class="card-text">@motorboat.ImagePath</p>
                 </div>
             </div>
         </div>
     }
 </div>
-<table>
-
-    <tbody>
+@* <table>
+ *@
+@*     <tbody>
         @foreach (Boats boat in Model.BoatsList)
         {
             <tr>
@@ -57,80 +156,6 @@
             </tr>
         }
     </tbody>
-    <!DOCTYPE html>
-    <html lang="da">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Båd Booking</title>
-    </head>
-    <body>
-        <h1>Book en Båd</h1>
-        <form id="bookingForm">
-            <label for="bådID">Båd ID:</label>
-            <input type="number" id="bådID" name="bådID" required /><br /><br />
-
-            <label for="medlemsID">Medlems ID:</label>
-            <input type="number" id="medlemsID" name="medlemsID" required /><br /><br />
-
-            <label for="sejlTid">Sejltid:</label>
-            <input type="datetime-local" id="sejlTid" name="sejlTid" required /><br /><br />
-
-            <label for="mødested">Mødested:</label>
-            <input type="text" id="mødested" name="mødested" required /><br /><br />
-
-            <button type="button" onclick="bookBåd()">Book båd</button>
-        </form>
-
-        <h2>Booking Log</h2>
-        <ul id="bookingLog"></ul>
-
-        <script>
-            // Simulerer en liste over bookinger
-            let bookings = [];
-
-            function generateBookingID() {
-                // simpel tæl-lejellem
-                if (!generateBookingID.counter) generateBookingID.counter = 1;
-                return generateBookingID.counter++;
-            }
-
-            function bookBåd() {
-                const bådID = parseInt(document.getElementById('bådID').value);
-                const medlemsID = parseInt(document.getElementById('medlemsID').value);
-                const sejlTidStr = document.getElementById('sejlTid').value;
-                const mødested = document.getElementById('mødested').value;
-
-                const sejlTid = new Date(sejlTidStr);
-
-                // Tjekker tilgængelighed
-                const erTilgængelig = bookings.every(b => b.BådID !== bådID || b.SejlTid.getTime() !== sejlTid.getTime());
-
-                if (!erTilgængelig) {
-                    alert('Båden er allerede booket til dette tidspunkt.');
-                    return;
-                }
-
-                const nyBookingID = generateBookingID();
-
-                const nyBooking = {
-                    BookingID: nyBookingID,
-                    BådID: bådID,
-                    MedlemsID: medlemsID,
-                    SejlTid: sejlTid,
-                    Mødested: mødested
-                };
-
-                bookings.push(nyBooking);
-                addBookingToLog(nyBooking);
-                alert('Båd er blevet booket.');
-            }
-
-            function addBookingToLog(booking) {
-                const ul = document.getElementById('bookingLog');
-                const li = document.createElement('li');
-                li.textContent = `BookingID: ${booking.BookingID}, BådID: ${booking.BådID}, MedlemsID: ${booking.MedlemsID}, SejlTid: ${booking.SejlTid.toLocaleString()}, Mødested: ${booking.Mødested}`;
-                ul.appendChild(li);
-        </script>
-    </body>
-</html>
+ *@  
+ 
 </table>
