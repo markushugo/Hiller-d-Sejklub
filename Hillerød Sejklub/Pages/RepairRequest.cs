@@ -11,6 +11,7 @@
         public bool IsFixed { get; set; }
 
         // Constructor for repair request  
+        public RepairRequest() { }
         public RepairRequest(int id, string boatName, string problemDescription, bool isFixed)
         {
             Id = id;
