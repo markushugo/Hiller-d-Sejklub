@@ -1,15 +1,20 @@
 ﻿namespace Hillerød_Sejklub.Models
 {
+    // Model for en motor
     public class Motor
     {
-        public int _antelHorse;
+        private int _antalHorse;
 
-        public int AntelHorse { get => _antelHorse; set => _antelHorse = value; }
-
-        public Motor(int antelHorses)
+        public int AntalHorse
         {
-            _antelHorse = AntelHorse;
+            get { return _antalHorse; }
+            set { _antalHorse = value; }
         }
 
+        public Motor(int antalHorse)
+        {
+            _antalHorse = antalHorse;
+        }
     }
 }
+

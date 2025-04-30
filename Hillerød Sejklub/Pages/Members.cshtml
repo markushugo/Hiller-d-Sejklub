@@ -19,15 +19,15 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (Hillerød_Sejklub.Pages.MembersModel.Member member in Model.MembersList)
-    {
-        <tr>
-            <td>@member.Name</td>
-            <td>@member.MemberId</td>
-            <td>@member.Email</td>
-            <td>@member.Phone</td>
-            <td>@(member.IsActive ? "Ja" : "Nej")</td>
-        </tr>
-    }
+        @foreach (Hillerød_Sejklub.Models.Member member in Model.MembersList)
+        {
+            <tr>
+                <td>@member.Name</td>
+                <td>@member.MemberId</td>
+                <td>@member.Email</td>
+                <td>@member.Phone</td>
+                <td>@(member.IsActive ? "Ja" : "Nej")</td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -6,65 +6,62 @@
 
 <h1 class="text-center">Indberet en reparation</h1>
 
-<!-- Formular til indtastning af ny reparation -->
-<form method="post" class="m-4">
+<!-- Formular til ny reparation -->
+<form method="post" class="mb-5">
     <div class="form-group">
         <label for="BoatName">Bådens navn</label>
         <input asp-for="NewRepair.BoatName" class="form-control" id="BoatName" required />
     </div>
 
-    <div class="form-group">
+    <div class="form-group mt-2">
         <label for="ProblemDescription">Beskrivelse af problemet</label>
-        <textarea asp-for="NewRepair.ProblemDescription" class="form-control" id="ProblemDescription" rows="4" required></textarea>
+        <textarea asp-for="NewRepair.ProblemDescription" class="form-control" id="ProblemDescription" rows="3" required></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Indsend</button>
+    <button type="submit" class="btn btn-primary mt-3">Indsend reparation</button>
 </form>
 
 <hr />
 
-<h2 class="text-center">Alle reparationer</h2>
+<h2 class="text-center mb-4">Alle reparationer</h2>
 
-<!-- Tabel med alle reparationer -->
-<table class="table table-striped mt-4">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Bådnavn</th>
-            <th>Problem</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (RepairRequest repair in Hillerød_Sejklub.Pages.RepairModel.Repairs)
-        {
-            <tr>
-                <td>@repair.Id</td>
-                <td>@repair.BoatName</td>
-                <td>@repair.ProblemDescription</td>
-                <td>
-                    @if (repair.IsFixed)
-                    {
-                        <span class="text-success font-weight-bold">Repareret</span>
-                    }
-                    else
-                    {
-                        <span class="text-danger font-weight-bold">Afventer</span>
+<!-- Visning af reparationer som kort -->
+<div class="row">
+    @foreach (RepairRequest repair in Hillerød_Sejklub.Pages.RepairModel.Repairs)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@repair.BoatName</h5>
+                    <p class="card-text"><strong>Problem:</strong> @repair.ProblemDescription</p>
+                    <p class="card-text">
+                        <strong>Status:</strong>
+                        @if (repair.IsFixed)
+                        {
+                            <span class="text-success">Repareret</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Afventer</span>
+                        }
+                    </p>
 
-                        <!-- Knap til at markere reparation som færdig -->
-                        <form method="post" asp-page-handler="MarkAsRepaired" class="d-inline">
+                    <div class="mt-3">
+                        @if (!repair.IsFixed)
+                        {
+                            <form method="post" asp-page-handler="MarkAsRepaired" class="d-inline">
+                                <input type="hidden" name="id" value="@repair.Id" />
+                                <button type="submit" class="btn btn-sm btn-success">Marker som repareret</button>
+                            </form>
+                        }
+
+                        <form method="post" asp-page-handler="Delete" class="d-inline">
                             <input type="hidden" name="id" value="@repair.Id" />
-                            <button type="submit" class="btn btn-sm btn-success ml-2">Marker som repareret</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Slet</button>
                         </form>
-                    }
-
-                    <!-- Knap til at slette reparation -->
-                    <form method="post" asp-page-handler="Delete" class="d-inline">
-                        <input type="hidden" name="id" value="@repair.Id" />
-                        <button type="submit" class="btn btn-sm btn-danger ml-2">Slet</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
