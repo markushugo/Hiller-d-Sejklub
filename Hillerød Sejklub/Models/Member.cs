@@ -1,6 +1,6 @@
 ﻿namespace Hillerød_Sejklub.Models
 {
-    public class Member : Boats
+    public class Member
     {
         // our private fields
         private string _name;
@@ -24,7 +24,7 @@
         // our constructor
 
 
-        public Member(int boatID, string name, string model, string sailNumber, string engineInfo, int buildYear, bool isAvailable, string email, string phoneNumber, string address, string city) : base(boatID, name, model, sailNumber, engineInfo, buildYear, isAvailable)
+        public Member(string name, string email, string phoneNumber, string address, string city)
         {
             _name = name;
             _email = email;
