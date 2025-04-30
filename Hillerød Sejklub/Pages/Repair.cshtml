@@ -1,4 +1,70 @@
 ﻿@page
 @model Hillerød_Sejklub.Pages.RepairModel
 @{
+    ViewData["Title"] = "Reparationer";
 }
+
+<h1 class="text-center">Indberet en reparation</h1>
+
+<!-- Formular til indtastning af ny reparation -->
+<form method="post" class="m-4">
+    <div class="form-group">
+        <label for="BoatName">Bådens navn</label>
+        <input asp-for="NewRepair.BoatName" class="form-control" id="BoatName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProblemDescription">Beskrivelse af problemet</label>
+        <textarea asp-for="NewRepair.ProblemDescription" class="form-control" id="ProblemDescription" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Indsend</button>
+</form>
+
+<hr />
+
+<h2 class="text-center">Alle reparationer</h2>
+
+<!-- Tabel med alle reparationer -->
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bådnavn</th>
+            <th>Problem</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RepairRequest repair in Hillerød_Sejklub.Pages.RepairModel.Repairs)
+        {
+            <tr>
+                <td>@repair.Id</td>
+                <td>@repair.BoatName</td>
+                <td>@repair.ProblemDescription</td>
+                <td>
+                    @if (repair.IsFixed)
+                    {
+                        <span class="text-success font-weight-bold">Repareret</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger font-weight-bold">Afventer</span>
+
+                        <!-- Knap til at markere reparation som færdig -->
+                        <form method="post" asp-page-handler="MarkAsRepaired" class="d-inline">
+                            <input type="hidden" name="id" value="@repair.Id" />
+                            <button type="submit" class="btn btn-sm btn-success ml-2">Marker som repareret</button>
+                        </form>
+                    }
+
+                    <!-- Knap til at slette reparation -->
+                    <form method="post" asp-page-handler="Delete" class="d-inline">
+                        <input type="hidden" name="id" value="@repair.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger ml-2">Slet</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
