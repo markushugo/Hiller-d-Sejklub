@@ -7,19 +7,19 @@ namespace Hillerød_Sejklub.Pages
 {
     public class RepairModel : PageModel
     {
-        // Liste over alle reparationer (gemmes i hukommelsen)
+        // Liste over alle reparationer 
         public static List<RepairRequest> Repairs = new List<RepairRequest>();
 
         // Egenskab der bindes til formularens inputfelter
         [BindProperty]
         public RepairRequest NewRepair { get; set; } = new RepairRequest(0, "", "", false);
 
-        // Kører når siden indlæses første gang (GET)
+        // Kører når siden indlæses første gang 
         public void OnGet()
         {
         }
 
-        // Kører når formularen indsendes (POST) - tilføjer ny reparation
+        // Kører når formularen indsendes 
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
