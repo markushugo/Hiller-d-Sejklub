@@ -5,29 +5,37 @@
     <link href="~/css/members.css" rel="stylesheet" />
 }
 
-<h1>Liste af vores medlemmer</h1>
-<p>Her kan du se en liste af de medlemmer vi har i Hillerød Sejlklub.</p>
+<section class="members-section">
+    <header class="members-header">
+        <h1>Liste af vores medlemmer</h1>
+        <p>Her kan du se en liste af de medlemmer vi har i Hillerød Sejlklub.</p>
+    </header>
 
-<table>
-    <thead>
-        <tr>
-            <th>Navn</th>
-            <th>Medlemsnummer</th>
-            <th>Email</th>
-            <th>Telefonnummer</th>
-            <th>Aktiv</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Hillerød_Sejklub.Models.Member member in Model.MembersList)
-        {
-            <tr>
-                <td>@member.Name</td>
-                <td>@member.MemberId</td>
-                <td>@member.Email</td>
-                <td>@member.Phone</td>
-                <td>@(member.IsActive ? "Ja" : "Nej")</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Navn</th>
+                    <th>Medlemsnummer</th>
+                    <th>Email</th>
+                    <th>Telefonnummer</th>
+                    <th>Aktiv</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Hillerød_Sejklub.Models.Member member in Model.MembersList)
+                {
+                    <tr>
+                        <td data-label="Navn">@member.Name</td>
+                        <td data-label="Medlemsnummer">@member.MemberId</td>
+                        <td data-label="Email">@member.Email</td>
+                        <td data-label="Telefonnummer">@member.Phone</td>
+                        <td data-label="Aktiv" class="@(member.IsActive ? "active-yes" : "active-no")">
+                            @(member.IsActive ? "Ja" : "Nej")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
