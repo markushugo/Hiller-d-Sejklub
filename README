@@ -1,0 +1,87 @@
+Der skal analyseres, designes og implementeres et website/webapplikation til Hillerød Sejlklub.
+
+Det skal være muligt, at….
+
+Oprette og administrere medlemmer, både og forskellige begivenheder i klubben.
+Der skal være en oversigt over medlemmer og det skal være muligt, at administrere deres oplysninger.
+Booke en båd og angive hvor og hvornår man ønsker at sejle.
+Klubbens medlemmer skal kunne se, hvem der er på tur (så der kan sættes en eftersøgning i gang, hvis de ikke er hjemme indenfor den angivne tidsperiode). 
+Registrere oplysninger om bådene og ligeledes angive om der er noget der skal repareres på de enkelte både. 
+Om en båd skal der bl.a. registreres både-type og model, bådens navn, sejlnummer, motoroplysninger, mål, byggeår.
+Et eksempel på noget der skal repareres kunne være ”rorpind knækket” eller ”bomnedhal knækket”.
+På båden skal der være en vedligeholdelseslog, så man kan se hvornår der er repareret noget og hvornår der er udført almindelig vedligeholdelse f.eks. har fået bundmaling.
+Oprette begivenheder såsom standerhejsning, arbejdsdag, bro-optagning og sommerfrokost.
+Det skal være muligt for medlemmerne at tilmelde sig til begivenhederne.
+Det er ligeledes et ønske, at der kan være en blog, hvor formanden/bestyrelsen kan beskrive forskellige begivenheder i løbet af sæsonen.
+Det kunne være beskrivelsen af en kapsejlads eller arbejdsdag med et billede. Det skal være muligt for bestyrelsen af redigere blog indlæggene. 
+ 
+
+Detaljer om krav til systemet kan fås ved at interviewe underviseren. 
+
+ 
+
+Sejlklubbens eksisterende hjemmeside findes her http://www.hillerodsejl.dk/. Det har vist sig, at den er vanskelig at holde opdateret og hjemmesiden indeholder ikke den funktionalitet, som der ønskes. På denne side kan der findes yderligere information om både m.m.
+
+ 
+
+Det forventes ikke, at alt funktionaliteten implementeres. 
+
+Formål
+
+At befæste jeres viden, som I har lært igennem semesteret i forretningsudvikling, systemudvikling og programmering.
+At skabe et grundlag for eksamen i programmering og systemudvikling efter 1. semester
+
+Dokumentation og logbog.
+
+ Hvert enkelt gruppemedlem skal være ansvarlig for sin del af det udviklede system lige fra analyse til implementering. Hvert gruppemedlem skal redegøre for sine relevante User Stories, UML-modeller og implementering i rapporten. Flere af UML-modellerne kan laves i fællesskab f.eks. domæne model og klassediagram. I forbindelse med dokumentationen af det udviklede arbejde skal man komme ind på design patterns (GRASP, Singleton, … m.m.).
+
+Dokumentationen skal indeholde et link til jeres kode i GitHub.
+
+Man må/skal naturligvis gerne hjælpe hinanden i udviklingsarbejdet.
+
+
+Systemudvikling
+
+Der skal anvendes SCRUM i udviklingsprocessen, hvor der skal udarbejdes User Stories, indeholdende Acceptance Criteria og Task. Der skal udarbejdes UML diagrammerne: Domæne Model og Klasse Diagram og Sekvens Diagram for systemet.
+
+ 
+
+Modellerne skal omhandle de dele af systemet, som er placeret i class library (se under programmering).
+
+ 
+
+Programmering
+
+System skal udvikles i Visual Studio Enterprise ved brug af de teknologier, som I har lært igennem semesteret.
+
+I forbindelse med implementering af jeres Repository klasser skal der implementeres en simpel algoritme til søgning/filtrering af elementerne og eventuelt en simpel sorteringsalgoritme til at fremvise elementerne sorteret.
+
+ 
+
+Det udviklede system i C# med tilhørende dokumentation/UML modeller fungerer som et grundlag for eksamen ved afslutningen af 1. semester.
+
+ 
+
+De centrale dele af systemet skal placeres i et Class Library. Det kan bl.a. Indeholde:
+
+Models
+Interfaces
+Services
+Exceptions
+ 
+
+Ligeledes skal der kun laves UML diagrammer over de dele af koden der er placeret i Class Library.
+
+ 
+
+Det endelige system skal køre som en Razor Page app, men det skal være muligt at afprøve (teste) systemet gennem en Console app, som ligeledes ligger i Github.
+
+ 
+
+Koden skal kommenteres.
+
+ 
+
+Da eksamen ikke omhandler implementeringen i Razor Page app er det vigtigt, at man kan afprøve (teste) applikation fra en Console app.
+
+ 
