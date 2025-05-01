@@ -1,0 +1,123 @@
+﻿@page
+@model MembershipModel
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meld dig ind</title>
+    <link rel="stylesheet" href="css/membership.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <h1 class="display">Priserne</h1>
+        <p class="lead">Priserne for medlemskaberne</p>
+    </div>
+
+    <div class="container text-center">
+        <div class="row row-cols-1 row-cols-md-2">
+            @foreach (Medlemskab m in Model.Medlemskaber)
+            {
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header"><h4>@m.Navn</h4></div>
+                        <div class="card-body">
+                            <h1 class="my-0 font-weight-normal">@m.Pris <small class="text-muted">/Årligt</small></h1>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <hr />
+
+    <form action="#" class="form">
+        <div class="medlem-box">
+            <h3>Medlemskab</h3>
+            <div class="medlem-option">
+                <div class="medlemskab">
+                    <input type="radio" id="junior" name="Medlem" checked />
+                    <label for="junior">Junior medlem</label>
+                </div>
+                <div class="medlemskab">
+                    <input type="radio" id="juniorPlads" name="Medlem" />
+                    <label for="juniorPlads">Junior medlem inkl. pladsleje</label>
+                </div>
+                <div class="medlemskab">
+                    <input type="radio" id="senior" name="Medlem" />
+                    <label for="senior">Senior medlem</label>
+                </div>
+                <div class="medlemskab">
+                    <input type="radio" id="seniorPlads" name="Medlem" />
+                    <label for="seniorPlads">Senior medlem inkl. pladsleje</label>
+                </div>
+                <div class="medlemskab">
+                    <input type="radio" id="familie" name="Medlem" />
+                    <label for="familie">Familie</label>
+                </div>
+                <div class="medlemskab">
+                    <input type="radio" id="baadeplads" name="Medlem" />
+                    <label for="baadeplads">Bådeplads</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <label>Navn og Efternavn</label>
+            <input type="text" placeholder="Indsæt navn og efternavn" required />
+        </div>
+
+        <div class="input-box">
+            <label>Email Adresse</label>
+            <input type="email" placeholder="Indsæt email adresse" required />
+        </div>
+
+        <div class="column">
+            <div class="input-box">
+                <label>Telefon nummer</label>
+                <input type="tel" placeholder="Indsæt telefon nummer" required />
+            </div>
+            <div class="input-box">
+                <label>Fødselsdagsdato</label>
+                <input type="date" required />
+            </div>
+        </div>
+
+        <div class="gender-box">
+            <h3>Køn</h3>
+            <div class="gender-option">
+                <div class="gender">
+                    <input type="radio" id="mand" name="gender" checked />
+                    <label for="mand">Mand</label>
+                </div>
+                <div class="gender">
+                    <input type="radio" id="kvinde" name="gender" />
+                    <label for="kvinde">Kvinde</label>
+                </div>
+                <div class="gender">
+                    <input type="radio" id="andet" name="gender" />
+                    <label for="andet">Ønsker ikke at oplyse</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-box adresse">
+            <label>Adresse</label>
+            <input type="text" placeholder="Indsæt Adresse" required />
+            <input type="text" placeholder="Indsæt Adresse linje 2" />
+            <div class="column">
+                <input type="text" placeholder="Indsæt by" required />
+                <input type="number" placeholder="Indsæt postnummer" required />
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+
+

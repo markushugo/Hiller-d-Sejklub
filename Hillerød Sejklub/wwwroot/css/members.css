@@ -1,27 +1,107 @@
-﻿table {
-    width: 90%;
-    margin: 20px auto;
-    border-collapse: collapse;
+﻿
+body {
     font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
 }
 
-th {
-    background-color: #007BFF;
-    text-align: start;
-    padding: 12px;
-    font-size: 18px;
+.container-medlem {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h3{
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #333;
+}
+
+
+
+.medlem-option,
+.gender-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.medlemskab,
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .input-box input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+.column {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .column .input-box {
+        flex: 1;
+        min-width: 200px;
+    }
+
+.input-box.adresse input {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #007bff;
     color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+    button:hover {
+        background-color: #0056b3;
+    }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
 
-h1, p {
-    text-align: start;
-    font-family: Arial, sans-serif;
+@media (max-width: 600px) {
+    .container-medlem {
+        padding: 20px;
+    }
+
+    .column {
+        flex-direction: column;
+    }
 }
