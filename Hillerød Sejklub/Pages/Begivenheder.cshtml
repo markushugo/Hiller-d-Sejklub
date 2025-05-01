@@ -1,125 +1,71 @@
 ﻿@page
 @model Hillerød_Sejklub.Pages.BegivenhederModel
-
 @{
     ViewData["Title"] = "Begivenheder";
     <link href="~/css/card.css" rel="stylesheet" />
-
 }
 
 <h1 class="text-center">Begivenheder</h1>
 
+<!-- Viser listen over oprettede begivenheder -->
 <h2>Liste Over Begivenheder</h2>
-<div id="eventList" class="booking-container"></div>
+<div class="booking-container">
+    @foreach (Hillerød_Sejklub.Models.Begivenhed b in Hillerød_Sejklub.Pages.BegivenhederModel.Begivenheder)
+    {
+        <div class="booking-card">
+            <p><strong>Eventtype:</strong> @b.Type</p>
+            <p><strong>Dato:</strong> @b.Dato.ToString("dd-MM-yyyy HH:mm")</p>
+        </div>
+    }
+</div>
 
-
+<!-- Formular for tilmelding -->
 <h2 class="mt-4">Tilmelding til begivenhed</h2>
-<form id="signupForm" class="mb-5">
-    <label for="memberID">Medlems ID:</label>
-    <input type="number" id="memberID" class="form-control mb-2" required />
+<form method="post" class="mb-5">
+    <label>Medlems ID:</label>
+    <input asp-for="MedlemsID" type="number" class="form-control mb-2" required />
 
-    <label for="selectEvent">Vælg Begivenhed:</label>
-    <select id="selectEvent" class="form-control mb-2"></select>
+    <label>Vælg Begivenhed:</label>
+    <select asp-for="ValgtBegivenhedID" class="form-control mb-2">
+        @foreach (Hillerød_Sejklub.Models.Begivenhed b in Hillerød_Sejklub.Pages.BegivenhederModel.Begivenheder)
+        {
+            <option value="@b.Id">@b.Type - @b.Dato.ToString("g")</option>
+        }
+    </select>
 
-    <button type="button" onclick="tilmeldMedlem()" class="btn btn-primary">Tilmeld</button>
+    <button type="submit" asp-page-handler="Tilmeld" class="btn btn-primary">Tilmeld</button>
 </form>
 
+<!-- Viser alle tilmeldte medlemmer -->
 <h2>Tilmeldte Medlemmer</h2>
-<div id="registrations" class="booking-container"></div>
+<div class="booking-container">
+    @foreach (Hillerød_Sejklub.Models.Tilmelding t in Hillerød_Sejklub.Pages.BegivenhederModel.Tilmeldinger)
+    {
+        Hillerød_Sejklub.Models.Begivenhed tilknyttetBegivenhed =
+        Hillerød_Sejklub.Pages.BegivenhederModel.Begivenheder
+        .FirstOrDefault(b => b.Id == t.BegivenhedID);
 
+        <div class="booking-card">
+            <p><strong>Medlems ID:</strong> @t.MedlemsID</p>
+            <p><strong>Eventtype:</strong> @tilknyttetBegivenhed?.Type</p>
+            <p><strong>Dato:</strong> @tilknyttetBegivenhed?.Dato.ToString("dd-MM-yyyy HH:mm")</p>
+        </div>
+    }
+</div>
+
+<!-- Formular til oprettelse af begivenhed -->
 <h2 class="mt-5">Opret en Begivenhed</h2>
-<form id="eventForm">
-    <label for="eventType">Vælg Begivenhed:</label>
-    <select id="eventType" class="form-control mb-2" required>
+<form method="post">
+    <label>Vælg Begivenhed:</label>
+    <select asp-for="NyBegivenhedType" class="form-control mb-2" required>
         <option value="Standerhejsning">Standerhejsning</option>
         <option value="Arbejdsdag">Arbejdsdag</option>
         <option value="Bro-optagning">Bro-optagning</option>
         <option value="Sommerfrokost">Sommerfrokost</option>
     </select>
 
-    <label for="eventDate">Dato og Tid:</label>
-    <input type="datetime-local" id="eventDate" class="form-control mb-2" required />
+    <label>Dato og Tid:</label>
+    <input asp-for="NyBegivenhedDato" type="datetime-local" class="form-control mb-2" required />
 
-    <button type="button" onclick="opretBegivenhed()" class="btn btn-success">Opret Begivenhed</button>
+    <button type="submit" asp-page-handler="OpretBegivenhed" class="btn btn-success">Opret Begivenhed</button>
 </form>
-
-<script>
-    const events = [];
-    const registrations = [];
-
-    function opretBegivenhed() {
-        const eventType = document.getElementById('eventType').value;
-        const eventDateStr = document.getElementById('eventDate').value;
-        const eventDate = new Date(eventDateStr);
-
-        const nyEvent = {
-            id: Date.now(),
-            type: eventType,
-            date: eventDate
-        };
-
-        events.push(nyEvent);
-        opdaterEventListe();
-        opdaterEventDropdown();
-    }
-
-        function opdaterEventListe() {
-        const container = document.getElementById('eventList');
-        container.innerHTML = '';
-
-        events.forEach(ev => {
-            const card = document.createElement('div');
-            card.classList.add('booking-card');
-
-            card.innerHTML = `
-                <p><strong>Eventtype:</strong> ${ev.type}</p>
-                <p><strong>Dato:</strong> ${ev.date.toLocaleString()}</p>
-            `;
-
-            container.appendChild(card);
-        });
-    }
-
-
-    function opdaterEventDropdown() {
-        const select = document.getElementById('selectEvent');
-        select.innerHTML = '';
-        events.forEach(ev => {
-            const option = document.createElement('option');
-            option.value = ev.id;
-            option.textContent = `${ev.type} - ${ev.date.toLocaleString()}`;
-            select.appendChild(option);
-        });
-    }
-
-    function tilmeldMedlem() {
-        const medlemsID = parseInt(document.getElementById('memberID').value);
-        const eventID = parseInt(document.getElementById('selectEvent').value);
-        const event = events.find(e => e.id === eventID);
-
-        if (event) {
-            registrations.push({ medlemsID, eventID });
-            opdaterTilmeldinger();
-        }
-    }
-
-    function opdaterTilmeldinger() {
-        const container = document.getElementById('registrations');
-        container.innerHTML = '';
-
-        registrations.forEach(reg => {
-            const event = events.find(e => e.id === reg.eventID);
-
-            const card = document.createElement('div');
-            card.classList.add('booking-card');
-
-            card.innerHTML = `
-                <p><strong>Medlems ID:</strong> ${reg.medlemsID}</p>
-                <p><strong>Eventtype:</strong> ${event.type}</p>
-                <p><strong>Dato:</strong> ${event.date.toLocaleString()}</p>
-            `;
-
-            container.appendChild(card);
-        });
-    }
-</script>
